@@ -2,6 +2,8 @@ const appName = "E-Mart";
 const appversion = "Version 1.0.0";
 const credits = "@Samadhan Devs";
 
+const logout = "Log Out";
+
 const email = "E-Mail";
 const emailHint = "sama@gmail.com";
 
@@ -39,4 +41,25 @@ const searchAnything = "Search Anything...",
     boysGlasses = "Boys Glasses",
     tShirt = "TShirts",
     girlsDress = "Girls Dress",
+    featuredProduct = "Featured Product",
     featuredCategories = "FeaturedCategories";
+
+const womenClothing = "Women Clothing",
+    menClothingFashion = "Men Clothing & Fashion",
+    compAccess = "Computer & Accessories",
+    autoMobile = "AutoMobile",
+    kidToys = "Kid Toys",
+    sports = "Sports",
+    jewelery = "Jewelery",
+    cellPhone = "Cell Phone & Tab",
+    furniture = "Furniture";
+
+const video = "Video",
+    reviews = "Reviews",
+    sellerPolicy = "Seller Policy",
+    returnPolicy = "Return Policy",
+    productsYouMayLike = "Product you may also like",
+    supportPolicy = "Support Policy";
+
+const wishlist = "My Wishlist", orders = "My Orders", message = "Messages";
+

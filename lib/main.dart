@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
+        iconTheme: IconThemeData(color: darkFontGrey),
         scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.transparent,
