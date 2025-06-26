@@ -11,7 +11,8 @@ class ProfileScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              // Edit Profile Button.
+              // Edit Profile Button.////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Align(
