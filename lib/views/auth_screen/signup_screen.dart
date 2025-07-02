@@ -1,4 +1,6 @@
 import 'package:flutter_emart/consts/consts.dart';
+import 'package:flutter_emart/controller/auth_controller.dart';
+import 'package:flutter_emart/views/home_screens/home.dart';
 import 'package:flutter_emart/widget_common/all_paddings.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -9,11 +11,19 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  var controller = Get.put(AuthController());
   bool? isCheck = false;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordRetypeController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return bgWidget(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Center(
           child: Column(
             children: [
@@ -25,12 +35,27 @@ class _SignupScreenState extends State<SignupScreen> {
               15.heightBox,
               Column(
                     children: [
-                      customTextField(hint: nameHint, title: name),
-                      customTextField(hint: emailHint, title: email),
-                      customTextField(hint: passwordHint, title: password),
+                      customTextField(
+                        hint: nameHint,
+                        title: name,
+                        controller: nameController,
+                      ),
+                      customTextField(
+                        hint: emailHint,
+                        title: email,
+                        controller: emailController,
+                      ),
+                      customTextField(
+                        hint: passwordHint,
+                        title: password,
+                        controller: passwordController,
+                        isPass: true,
+                      ),
                       customTextField(
                         hint: passwordHint,
                         title: retypePassword,
+                        controller: passwordRetypeController,
+                        isPass: true,
                       ),
                       5.heightBox,
                       Align(
@@ -43,9 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           Checkbox(
                             value: isCheck,
                             onChanged: (newValue) {
-                              setState(() {
-
-                              });
+                              setState(() {});
                               isCheck = newValue;
                             },
                             checkColor: redColor,
@@ -89,12 +112,54 @@ class _SignupScreenState extends State<SignupScreen> {
                         ],
                       ),
                       5.heightBox,
-                      outButton(
-                        onPress: () {},
-                        color:isCheck==true? redColor:lightGrey,
-                        textColor: whiteColor,
-                        title: signup,
-                      ).box.width(context.screenWidth - 50).make(),
+                      Obx(
+                        () => controller.isLoading.value
+                            ? CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(redColor),
+                              )
+                            : outButton(
+                                onPress: () async {
+
+                                  if (isCheck != false) {
+                                    controller.isloading(true);
+                                    try {
+                                      await controller
+                                          .signupMethod(
+                                            context: context,
+                                            password: passwordController.text,
+                                            email: emailController.text,
+                                          )
+                                          .then((value) {
+                                            controller.storeUserData(
+                                              email: emailController.text,
+                                              password: passwordController.text,
+                                              name: nameController.text,
+                                            );
+                                          })
+                                          .then((value) {
+                                            VxToast.show(
+                                              context,
+                                              msg: loggedin,
+                                            );
+                                            Get.offAll(() => Home());
+                                          });
+                                    } catch (signUpError) {
+                                      auth.signOut();
+                                      VxToast.show(
+                                        context,
+                                        msg: signUpError.toString(),
+                                      );
+                                      controller.isloading(false);
+                                    }
+                                  }else{
+                                    controller.isloading(false);
+                                  }
+                                },
+                                color: isCheck == true ? redColor : lightGrey,
+                                textColor: whiteColor,
+                                title: signup,
+                              ).box.width(context.screenWidth - 50).make(),
+                      ),
                       10.heightBox,
                       RichText(
                         text: TextSpan(
@@ -115,7 +180,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ],
                         ),
-                      ).onTap((){Get.back();}),
+                      ).onTap(() {
+                        Get.back();
+                      }),
                     ],
                   ).box
                   .padding(EdgeInsets.all(8.0))

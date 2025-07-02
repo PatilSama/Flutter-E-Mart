@@ -1,8 +1,9 @@
 import 'package:flutter_emart/consts/consts.dart';
 
 class ItemDetails extends StatelessWidget {
-  const ItemDetails({super.key, required this.title});
+  const ItemDetails({super.key, required this.title, this.data});
 
+  final  dynamic data;
   final String? title;
 
   @override
@@ -29,11 +30,12 @@ class ItemDetails extends StatelessWidget {
                       autoPlay: true,
                       height: 350,
                       aspectRatio: 16 / 9,
+                      viewportFraction: 0.8,
                       // enlargeCenterPage: true,
-                      itemCount: 3,
+                      itemCount: data['p_imgs'].length,
                       itemBuilder: (context, index) {
-                        return Image.asset(
-                          imgFc5,
+                        return Image.network(
+                          data['p_imgs'][index],
                           fit: BoxFit.cover,
                           width: double.infinity,
                         );
@@ -47,15 +49,18 @@ class ItemDetails extends StatelessWidget {
                         .make(),
                     10.heightBox,
                     VxRating(
+                      value: double.parse(data['p_rating']),
                       onRatingUpdate: (value) {},
                       normalColor: textfieldGrey,
                       selectionColor: golden,
                       count: 5,
+                      isSelectable: false,
+                      maxRating: 5,
                       size: 25,
                       stepInt: true,
                     ),
                     10.heightBox,
-                    "\$30,000".text
+                    "${data['p_price']}".numCurrency.text
                         .fontFamily(bold)
                         .color(redColor)
                         .size(18)
@@ -69,7 +74,7 @@ class ItemDetails extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  "Seller".text.white
+                                  "${data['p_seller']}".text.white
                                       .fontFamily(semibold)
                                       .make(),
                                   5.heightBox,
@@ -104,7 +109,7 @@ class ItemDetails extends StatelessWidget {
                             ),
                             Row(
                               children: List.generate(
-                                3,
+                                data['p_colors'].length,
                                 (index) => VxBox()
                                     .size(40, 40)
                                     .roundedFull
@@ -113,7 +118,7 @@ class ItemDetails extends StatelessWidget {
                                         horizontal: 6,
                                       ),
                                     )
-                                    .color(Vx.randomPrimaryColor)
+                                    .color(Color(data['p_colors'][index]).withOpacity(1.0))
                                     .make(),
                               ),
                             ),

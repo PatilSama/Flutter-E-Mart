@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "423796998013",
+    "project_id": "flutteremart-19106",
+    "storage_bucket": "flutteremart-19106.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423796998013:android:ab31c62a308e30c280d614",
+        "android_client_info": {
+          "package_name": "com.example.flutter_emart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2bA3d9OO7MAdQI0ezrQ9uuVoioWh7HAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

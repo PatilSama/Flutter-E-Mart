@@ -10,6 +10,9 @@ const emailHint = "sama@gmail.com";
 const password = "Password";
 const passwordHint = "******";
 
+const loggedin = "Logged in successfully";
+const loggedOut = "Logged Out successfully";
+
 const retypePassword = "Retype Password";
 const name = "Name";
 const nameHint = "Samadhan Devs";
@@ -61,5 +64,5 @@ const video = "Video",
     productsYouMayLike = "Product you may also like",
     supportPolicy = "Support Policy";
 
-const wishlist = "My Wishlist", orders = "My Orders", message = "Messages";
+const wishlist = "My Wishlist", orders = "My Orders", message = "Messages",oldPass="Old password",newPass = "New Password";
 

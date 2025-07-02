@@ -46,3 +46,8 @@ const itemDetailButtonsList = [
 
 const profileButtonList  = [wishlist,orders,message];
 const profileButtonIcons = [icOrder,icOrder,icMessages];
+
+
+ Object getObject(){
+  return {"":""};
+}
