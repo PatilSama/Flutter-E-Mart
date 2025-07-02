@@ -21,7 +21,7 @@ class CategoryDetails extends StatelessWidget {
               .make(),
           iconTheme: IconThemeData(color: whiteColor),
         ),
-        body: StreamBuilder(
+        body: StreamBuilder<QuerySnapshot>(
             stream: FireStoreServices.getProduct(title),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if(snapshot.hasData){
